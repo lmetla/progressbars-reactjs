@@ -45,7 +45,7 @@ class Progressbar extends React.Component {
             ref={this.state.id}
             id={this.state.id}>
             <div
-              className="progress-bar progress-bar-success active"         role="progressbar"
+              className="progress-bar progress-bar-success active"        role="progressbar"
               aria-valuenow= {this.state.percent}
               aria-valuemin="0"
               aria-valuemax="100"

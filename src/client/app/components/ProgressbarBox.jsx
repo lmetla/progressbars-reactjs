@@ -24,7 +24,7 @@ class ProgressbarBox extends React.Component {
 			{
 				id: 3,
 				percent: 30
-			},
+			}
 
 		];
 	 	this.setState({data: this.state.data.concat(data)});
