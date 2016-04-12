@@ -20995,8 +20995,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var data = [];
-	
 	var ProgressbarBox = function (_React$Component) {
 		_inherits(ProgressbarBox, _React$Component);
 	
@@ -21096,15 +21094,12 @@
 	    key: 'autoIncrement',
 	    value: function autoIncrement() {
 	      var percent = this.state.percent + 10;
-	      console.log(percent);
 	      if (percent <= 100) {
 	        this.setState({
 	          percent: percent,
 	          id: this.state.id
 	        });
-	      } else {
-	        clearInterval(this.interval);
-	      }
+	      } else clearInterval(this.interval);
 	    }
 	  }]);
 	
@@ -21113,7 +21108,6 @@
 	
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Progressbar).call(this, props));
 	
-	    console.log(props);
 	    _this.state = { percent: 0, id: 0 };
 	    return _this;
 	  }
@@ -21122,11 +21116,6 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.handleProps(this.props);
-	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(props) {
-	      console.log(props);
 	    }
 	  }, {
 	    key: 'render',

@@ -7,7 +7,6 @@ const propTypes = {
 };
 
 class Progressbar extends React.Component {
-
   handleProps(props) {
     this.setState({
       percent: props.data.percent + 10,
@@ -19,29 +18,22 @@ class Progressbar extends React.Component {
 
   autoIncrement() {
     var percent = this.state.percent + 10;
-    console.log(percent);
     if(percent <= 100) {
       this.setState({
         percent: percent,
         id: this.state.id
       });
     }
-    else {
+    else
       clearInterval(this.interval);
-    }
-
   }
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = ({percent: 0,id: 0});
   }
   componentDidMount() {
     this.handleProps(this.props);
-  }
-  componentWillReceiveProps(props) {
-    console.log(props);
   }
 
   render() {

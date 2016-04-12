@@ -1,8 +1,6 @@
 import React,	{ PropTypes } from 'react';
 import ProgressbarList from './ProgressbarList.jsx';
 
-var data = [];
-
 class ProgressbarBox extends React.Component {
 	constructor(props) {
 		super(props);
