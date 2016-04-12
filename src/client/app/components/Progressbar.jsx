@@ -3,26 +3,62 @@ import {render} from 'react-dom';
 
 const propTypes = {
 	id: PropTypes.number,
-	value: PropTypes.number
+	percent: PropTypes.number
 };
 
 class Progressbar extends React.Component {
 
-  render () {
+  handleProps(props) {
+    this.setState({
+      percent: props.data.percent + 10,
+      id: props.data.id
+    });
+    console.log(this);
+    this.interval = setInterval(this.autoIncrement.bind(this), 1000);
+  }
+
+  autoIncrement() {
+    var percent = this.state.percent + 10;
+    console.log(percent);
+    if(percent <= 100) {
+      this.setState({
+        percent: percent,
+        id: this.state.id
+      });
+    }
+    else {
+      clearInterval(this.interval);
+    }
+
+  }
+
+  constructor(props) {
+    super(props);
+    console.log(props);
+    this.state = ({percent: 0,id: 0});
+  }
+  componentDidMount() {
+    this.handleProps(this.props);
+  }
+  componentWillReceiveProps(props) {
+    console.log(props);
+  }
+
+  render() {
     return (
       <div className="row">
         <div className="container">
           <div
             className="progress"
-            ref={this.props.data.id}
-            id={this.props.data.id}>
+            ref={this.state.id}
+            id={this.state.id}>
             <div
-              className="progress-bar progress-bar-striped active"         role="progressbar"
-              aria-valuenow= {this.props.data.value}
+              className="progress-bar progress-bar-success active"         role="progressbar"
+              aria-valuenow= {this.state.percent}
               aria-valuemin="0"
               aria-valuemax="100"
-              style={{width: this.props.data.value +"%"}}>
-              <span>{this.props.data.value}% Complete</span>
+              style={{width: this.state.percent +"%"}}>
+              <span>{this.state.percent}% Complete</span>
             </div>
          </div>
         </div>

@@ -7,12 +7,14 @@ class App extends React.Component{
 
   render () {
     return (
-      <div className="row">
-        <div className="container">
-          <h2> Progressbars  </h2>
-          <ProgressbarBox />
+      <body>
+        <div className="row">
+          <div className="container well">
+            <h2> Progressbars  </h2>
+            <ProgressbarBox />
+          </div>
         </div>
-      </div>
+      </body>
     );
   }
 }

@@ -6,19 +6,18 @@ class ProgressbarList extends React.Component {
     super(props);
     this.state = { data: []};
   }
-  componentWillReceiveProps(props){
+  componentWillReceiveProps(props) {
     console.log(props);
     this.setState({data:props.data});
   }
-  render () {
+  render() {
     return (
-      <div className="row">
-        <div className="container">
-					<div>
-            {this.state.data.map((progressbar) => (
-              <Progressbar data={progressbar} key={progressbar.id} />
-            ))}
-					</div>
+      <div className = "row">
+        <div className= "container">
+          {this.state.data.map((progressbar) => (
+            <Progressbar data={progressbar} key={progressbar.id}>
+            </Progressbar>
+          ))}
         </div>
       </div>
     );

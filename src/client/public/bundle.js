@@ -84,17 +84,21 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'div',
-	        { className: 'row' },
+	        'body',
+	        null,
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'container' },
+	          { className: 'row' },
 	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            ' Progressbars  '
-	          ),
-	          _react2.default.createElement(_ProgressbarBox2.default, null)
+	            'div',
+	            { className: 'container well' },
+	            _react2.default.createElement(
+	              'h2',
+	              null,
+	              ' Progressbars  '
+	            ),
+	            _react2.default.createElement(_ProgressbarBox2.default, null)
+	          )
 	        )
 	      );
 	    }
@@ -21014,13 +21018,13 @@
 				// Initialize the data list
 				var data = [{
 					id: 1,
-					value: 70
+					percent: 10
 				}, {
 					id: 2,
-					value: 40
+					percent: 20
 				}, {
 					id: 3,
-					value: 20
+					percent: 30
 				}];
 				this.setState({ data: this.state.data.concat(data) });
 				console.log(this.state);
@@ -21072,19 +21076,59 @@
 	
 	var propTypes = {
 	  id: _react.PropTypes.number,
-	  value: _react.PropTypes.number
+	  percent: _react.PropTypes.number
 	};
 	
 	var Progressbar = function (_React$Component) {
 	  _inherits(Progressbar, _React$Component);
 	
-	  function Progressbar() {
+	  _createClass(Progressbar, [{
+	    key: 'handleProps',
+	    value: function handleProps(props) {
+	      this.setState({
+	        percent: props.data.percent + 10,
+	        id: props.data.id
+	      });
+	      console.log(this);
+	      this.interval = setInterval(this.autoIncrement.bind(this), 1000);
+	    }
+	  }, {
+	    key: 'autoIncrement',
+	    value: function autoIncrement() {
+	      var percent = this.state.percent + 10;
+	      console.log(percent);
+	      if (percent <= 100) {
+	        this.setState({
+	          percent: percent,
+	          id: this.state.id
+	        });
+	      } else {
+	        clearInterval(this.interval);
+	      }
+	    }
+	  }]);
+	
+	  function Progressbar(props) {
 	    _classCallCheck(this, Progressbar);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Progressbar).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Progressbar).call(this, props));
+	
+	    console.log(props);
+	    _this.state = { percent: 0, id: 0 };
+	    return _this;
 	  }
 	
 	  _createClass(Progressbar, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.handleProps(this.props);
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(props) {
+	      console.log(props);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -21097,20 +21141,20 @@
 	            'div',
 	            {
 	              className: 'progress',
-	              ref: this.props.data.id,
-	              id: this.props.data.id },
+	              ref: this.state.id,
+	              id: this.state.id },
 	            _react2.default.createElement(
 	              'div',
 	              {
-	                className: 'progress-bar progress-bar-striped active', role: 'progressbar',
-	                'aria-valuenow': this.props.data.value,
+	                className: 'progress-bar progress-bar-success active', role: 'progressbar',
+	                'aria-valuenow': this.state.percent,
 	                'aria-valuemin': '0',
 	                'aria-valuemax': '100',
-	                style: { width: this.props.data.value + "%" } },
+	                style: { width: this.state.percent + "%" } },
 	              _react2.default.createElement(
 	                'span',
 	                null,
-	                this.props.data.value,
+	                this.state.percent,
 	                '% Complete'
 	              )
 	            )
@@ -21185,13 +21229,9 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'container' },
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            this.state.data.map(function (progressbar) {
-	              return _react2.default.createElement(_Progressbar2.default, { data: progressbar, key: progressbar.id });
-	            })
-	          )
+	          this.state.data.map(function (progressbar) {
+	            return _react2.default.createElement(_Progressbar2.default, { data: progressbar, key: progressbar.id });
+	          })
 	        )
 	      );
 	    }
