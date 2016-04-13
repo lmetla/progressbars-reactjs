@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ProgressbarBox from './Components/ProgressbarBox.jsx';
 
 class App extends React.Component{
-
   render () {
     return (
       <body>

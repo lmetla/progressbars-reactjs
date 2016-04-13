@@ -2,8 +2,8 @@ import React, {PropTypes} from 'react';
 import {render} from 'react-dom';
 
 const propTypes = {
-	id: PropTypes.number,
-	percent: PropTypes.number
+  id: PropTypes.number,
+  percent: PropTypes.number
 };
 
 class Progressbar extends React.Component {
@@ -32,6 +32,7 @@ class Progressbar extends React.Component {
     super(props);
     this.state = ({percent: 0,id: 0});
   }
+
   componentDidMount() {
     this.handleProps(this.props);
   }
